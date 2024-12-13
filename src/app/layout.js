@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { ApolloProvider } from "@apollo/client";
-import { getClient } from "./apollo_client";
 
 import GlobalMenubar from "./components/menubar";
 
@@ -27,11 +26,9 @@ export default function RootLayout({ children }) {
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <ApolloProvider>
-                    <GlobalMenubar />
+                <GlobalMenubar />
 
-                    {children}
-                </ApolloProvider>
+                {children}
             </body>
         </html>
     );
