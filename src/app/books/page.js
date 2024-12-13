@@ -98,9 +98,9 @@ export default async function Page() {
                         key={book.id}
                         className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
                     >
-                        {book.avatar ? (
+                        {book.cover ? (
                             <Image
-                                src={book.avatar}
+                                src={book.cover}
                                 alt={book.title}
                                 className="w-20 h-20 rounded-full mx-auto"
                             />
@@ -114,12 +114,15 @@ export default async function Page() {
                             {book.description}
                         </p>
                         {/* Action Buttons */}
-                        <div className="mt-4 flex justify-between">
-                            <button className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        <div className="mt-4 flex justify-end">
+                            <button className="bg-yellow-500 text-white mx-1 px-3 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                View Details
+                            </button>
+                            <button className="bg-green-500 text-white px-3 mx-1 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
                                 Edit
                             </button>
                             <button
-                                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                                className="bg-red-500 text-white px-3 py-1 mx-1 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
                                 // onClick={() => handleDelete(user.id)}
                             >
                                 Delete
