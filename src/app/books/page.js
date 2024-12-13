@@ -1,9 +1,11 @@
 import { gql, useQuery, useReadQuery, useSuspenseQuery } from "@apollo/client";
 import { getClient } from "../apollo_client";
+import Image from "next/image";
 
 const GET_BOOKS = gql`
     query Books {
         books {
+            id
             title
             description
             published_date
@@ -12,8 +14,40 @@ const GET_BOOKS = gql`
 `;
 
 export default async function Page() {
-    const { data } = await getClient().query({ query: GET_BOOKS });
+    const { loading, error, data } = await getClient().query({
+        query: GET_BOOKS,
+    });
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+    if (error) {
+        console.log("books fetch error", error);
+        return <p>Error: {error.message}</p>;
+    }
+
     console.log("book fetched data", data);
 
-    return <h1>Nested Page!!</h1>;
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            {data.books.map((book) => (
+                <div
+                    key={book.id}
+                    className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
+                >
+                    <Image
+                        src={book.avatar}
+                        alt={book.title}
+                        className="w-20 h-20 rounded-full mx-auto"
+                    />
+                    <h3 className="text-lg font-semibold text-center mt-4">
+                        {book.title}
+                    </h3>
+                    <p className="text-gray-600 text-center">
+                        {book.description}
+                    </p>
+                </div>
+            ))}
+        </div>
+    );
 }
