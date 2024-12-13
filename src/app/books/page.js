@@ -1,6 +1,7 @@
 import { gql, useQuery, useReadQuery, useSuspenseQuery } from "@apollo/client";
 import { getClient } from "../apollo_client";
 import Image from "next/image";
+import Link from "next/link";
 
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -115,14 +116,17 @@ export default async function Page() {
                         </p>
                         {/* Action Buttons */}
                         <div className="mt-4 flex justify-end">
-                            <button className="bg-yellow-500 text-white mx-1 px-3 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                            <Link
+                                href={"/books/" + book.id}
+                                className="bg-yellow-500 text-white  px-3 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                            >
                                 View Details
-                            </button>
-                            <button className="bg-green-500 text-white px-3 mx-1 py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                            </Link>
+                            <button className="bg-green-500 text-white px-3  py-1 rounded hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400">
                                 Edit
                             </button>
                             <button
-                                className="bg-red-500 text-white px-3 py-1 mx-1 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                                className="bg-red-500 text-white px-3 py-1  rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
                                 // onClick={() => handleDelete(user.id)}
                             >
                                 Delete
